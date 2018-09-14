@@ -5,9 +5,8 @@ services:
     container_name: elasticsearch
     environment:
       discovery.type: single-node
-    expose:
-      - "9200"
-      - "9300"
+    ports:
+      - "127.0.0.1:9200:9200"
     volumes:
       - ruuvitag_elk:/usr/share/elasticsearch/data
     restart: always
@@ -18,7 +17,7 @@ services:
     volumes:
       - ./pipeline:/usr/share/logstash/pipeline
     ports :
-      - "8080:8080"
+      - 8080:8080
     depends_on:
       - elasticsearch
     restart: always
